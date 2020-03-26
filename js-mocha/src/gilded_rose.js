@@ -12,8 +12,6 @@ class Shop {
   }
   updateQuality() {
 
-    const unusualItems = ['Aged Brie', 'Sulfuras, Hand of Ragnaros', 'Backstage passes to a TAFKAL80ETC concert']
-
     for (var i = 0; i < this.items.length; i++) {
       var item = this.items[i]
       item.sellIn--
