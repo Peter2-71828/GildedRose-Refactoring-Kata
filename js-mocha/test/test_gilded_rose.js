@@ -48,6 +48,7 @@ describe("Gilded Rose", function() {
     expect(itemAfterOneDay[0].sellIn).to.equal(5);
   });
 
+  // 'Backstage passes' name in given code also different
   it("Backstage passes increase in quality", function() {
     const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 13, 42)]);
     const itemAfterOneDay = gildedRose.updateQuality();
