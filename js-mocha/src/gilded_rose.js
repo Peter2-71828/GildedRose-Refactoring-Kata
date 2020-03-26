@@ -11,22 +11,32 @@ class Shop {
     this.items = items;
   }
   updateQuality() {
-    const unusualItem = ['Aged Brie', 'Sulfuras, Hand of Ragnaros', 'Backstage passes to a TAFKAL80ETC concert']
+
+    const unusualItems = ['Aged Brie', 'Sulfuras, Hand of Ragnaros', 'Backstage passes to a TAFKAL80ETC concert']
+
     for (var i = 0; i < this.items.length; i++) {
       var item = this.items[i]
-      if (unusualItem.includes(item.name)) {
+      if (unusualItems.includes(item.name)) {
+        unusualItems(item)
       }
-      else if (item.quality > 0) {
-        this.items[i].quality--
-        this.items[i].sellIn--
-        if (item.sellIn < 0) {
-          this.items[i].quality--
-        }
+      else {
+        standardItems(item)
       }
     }
     return this.items
   }
 }
+
+function standardItems(item) {
+  if (item.quality > 0) {
+    item.quality--
+    item.sellIn--
+    if (item.sellIn < 0) {
+      item.quality--
+    }
+  }
+}
+
 module.exports = {
   Item,
   Shop
