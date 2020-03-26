@@ -16,24 +16,18 @@ class Shop {
 
     for (var i = 0; i < this.items.length; i++) {
       var item = this.items[i]
-      if (unusualItems.includes(item.name)) {
-        unusualItems(item)
-      }
-      else {
-        standardItems(item)
-      }
-    }
-    return this.items
+      if (unusualItems.includes(item.name)) { unusualItems(item) }
+      else { standardItems(item) }
+
+    }return this.items
   }
 }
 
 function standardItems(item) {
+  item.sellIn--
   if (item.quality > 0) {
     item.quality--
-    item.sellIn--
-    if (item.sellIn < 0) {
-      item.quality--
-    }
+    if (item.sellIn < 0) { item.quality-- }
   }
 }
 
