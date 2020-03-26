@@ -32,7 +32,7 @@ function standardItems(item) {
 
 function otherItems(item) {
   if (item.name === 'Aged Brie') { agedBrie(item) }
-  else if (item.name === 'Sulfuras, Hand of Ragnaros') { sulfural(item) }
+  else if (item.name === 'Sulfuras, Hand of Ragnaros') { sulfuras(item) }
   else if (item.name === 'Backstage passes to a TAFKAL80ETC concert') { backstagePasses(item) }
 }
 
@@ -41,6 +41,15 @@ function agedBrie(item) {
     item.quality++
     if (item.sellIn < 0) { item.quality++ }
   }
+}
+
+function sulfuras(item) { item.sellIn++ }
+
+function backstagePasses(item) {
+  if (item.sellIn < 0) { item.quality = 0 }
+  else if (item.sellIn <= 5) {item.quality += 3}
+  else if (item.sellIn <= 10) {item.quality += 2}
+  else { item.quality++ }
 }
 
 module.exports = {
