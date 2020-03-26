@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel": "5.8.38",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "5.2.0"
+  },
+  "dependencies": {
+    "@babel/register": "^7.9.0"
   }
 }
