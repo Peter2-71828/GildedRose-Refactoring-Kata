@@ -21,7 +21,7 @@ describe("Gilded Rose", function() {
     expect(itemAfterOneDay[0].quality).to.equal(0);
   });
 
-  it("Aged Brie should increase in quality", function() {
+  it("Aged Brie increases in quality", function() {
     const gildedRose = new Shop([ new Item("Aged Brie", 5, 15) ]);
     const itemAfterOneDay = gildedRose.updateQuality();
     expect(itemAfterOneDay[0].quality).to.equal(16);
@@ -40,11 +40,37 @@ describe("Gilded Rose", function() {
     expect(itemAfterOneDay[0].quality).to.equal(50);
   });
 
+  // 'Sulfuras' called 'Sulfuras, hand of Ragnaros' in given code
   it("properties of Sulfuras should not change", function() {
     const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 5, 30) ]);
     const itemAfterOneDay = gildedRose.updateQuality();
     expect(itemAfterOneDay[0].quality).to.equal(30);
     expect(itemAfterOneDay[0].sellIn).to.equal(5);
+  });
+
+  it("Backstage passes increase in quality", function() {
+    const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 13, 42)]);
+    const itemAfterOneDay = gildedRose.updateQuality();
+    expect(itemAfterOneDay[0].quality).to.equal(43);
+  });
+
+  it("Backstage passes increase in quality by 2 when within 10 days of the sell by date", function() {
+    const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 39)]);
+    const itemAfterOneDay = gildedRose.updateQuality();
+    expect(itemAfterOneDay[0].quality).to.equal(41);
+  });
+
+  it("Backstage passes increase in quality by three within 5 days of the sell by date", function() {
+    const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 5, 8)]);
+    const itemAfterOneDay = gildedRose.updateQuality();
+    expect(itemAfterOneDay[0].quality).to.equal(11);
+  });
+
+  // 'Backstage passes quality decrease at SellIn = 0 not after in given code'
+  it("Backstage passes quality drops to 0 at sell by date", function() {
+    const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)]);
+    const itemAfterOneDay = gildedRose.updateQuality();
+    expect(itemAfterOneDay[0].quality).to.equal(0);
   });
 
 });
