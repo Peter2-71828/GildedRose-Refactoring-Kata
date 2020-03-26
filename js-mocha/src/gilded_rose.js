@@ -17,25 +17,25 @@ class Shop {
     for (var i = 0; i < this.items.length; i++) {
       var item = this.items[i]
       item.sellIn--
-      if (unusualItems.includes(item.name)) { otherItems(item) }
-      else { standardItems(item) }
+      updateItem(item)
     }return this.items
   }
 }
 
 // Logic for updateQuality method for all the types of items
 
+function updateItem(item) {
+  if (item.name === 'Aged Brie') { agedBrie(item) }
+  else if (item.name === 'Sulfuras, Hand of Ragnaros') { sulfuras(item) }
+  else if (item.name === 'Backstage passes to a TAFKAL80ETC concert') { backstagePasses(item) }
+  else { standardItems(item) }
+}
+
 function standardItems(item) {
   if (item.quality > 0) {
     item.quality--
     if (item.sellIn < 0) { item.quality-- }
   }
-}
-
-function otherItems(item) {
-  if (item.name === 'Aged Brie') { agedBrie(item) }
-  else if (item.name === 'Sulfuras, Hand of Ragnaros') { sulfuras(item) }
-  else if (item.name === 'Backstage passes to a TAFKAL80ETC concert') { backstagePasses(item) }
 }
 
 function agedBrie(item) {
